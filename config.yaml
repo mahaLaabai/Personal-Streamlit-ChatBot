@@ -1,0 +1,34 @@
+ctransformers:
+  model_path:
+    large: "./models/mistral-7b-instruct-v0.2-code-ft.Q5_K_M.gguf"
+  embeddings_path: "BAAI/bge-large-en-v1.5"
+
+  model_type: "mistral"
+  model_config: 
+    'max_new_tokens': 256
+    'temperature' : 0.2
+    'context_length': 2048
+    'gpu_layers' : 0 # 32 to put all mistral layers on GPU, might differ for other models
+    'threads' : -1
+chat_config:
+  chat_memory_length: 2
+  number_of_retrieved_documents: 3
+
+pdf_text_splitter:
+  chunk_size: 1024
+  overlap: 50
+  separators: ["\n", "\n\n"]
+
+llava_model:
+  llava_model_path: "./models/llava/ggml-model-q5_k.gguf"
+  clip_model_path: "./models/llava/mmproj-model-f16.gguf"
+
+whisper_model: "openai/whisper-small"
+
+embeddings_path: "BAAI/bge-large-en-v1.5"
+
+chromadb:
+  chromadb_path: "chroma_db"
+  collection_name: "pdfs"
+
+chat_sessions_database_path: "./chat_sessions/chat_sessions.db"
